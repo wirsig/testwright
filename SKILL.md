@@ -50,6 +50,7 @@ Date/time                just before / exact / just after
 Enum ≤10                 each valid / one invalid / empty
 Enum >10                 representative valid / invalid / boundaries only
 Boolean                  true and false
+Float                    also test precision edge cases (e.g. 0.1 + 0.2)
 One boundary point per TC.
 
 Decision Tables — when 2+ conditions jointly determine the outcome:
@@ -74,6 +75,7 @@ SECTION A — SCENARIOS
   Gherkin by default; plain Given/When/Then if team doesn't use Gherkin.
   >10 TCs: compact list first (ID / type / title), full scenarios on request.
   Every scenario: reqId / priority / testType / confidence / derivedFrom / ecRef
+    / @humanReviewed:false
   Background for shared preconditions. Outline+Examples for data-driven cases.
 
 SECTION B — TEMPLATES
@@ -86,6 +88,7 @@ JUnit XML by default; adapt for Xray, Zephyr, TestRail, qTest if specified.
 
 SECTION C — COVERAGE MATRIX
 XML, JSON, or Markdown — state format at top.
+Root element carries humanReviewed=false as attribute.
 Per requirement: TC list + coverageStatus:
 COVERED / PARTIALLY_COVERED / NOT_COVERED / BLOCKED
 coveragePercent = (COVERED + PARTIALLY_COVERED × 0.5) / total × 100
@@ -103,5 +106,6 @@ END every response with:
 - BLOCKED requirements: <list or “none”>
 - Deferred candidates: <count or “none”>
   Review and approve before use. Set humanReviewed=true after sign-off.
+  Test data must be realistic but never real PII (names, emails, IDs, phone numbers).
 
 </output>
