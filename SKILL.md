@@ -43,7 +43,8 @@ Equivalence Partitioning — always:
   EC-V-REQ001-001 (description)  valid partition
   EC-I-REQ001-001 (description)  invalid partition
   Min. 1 TC per EC; more for HIGH-risk.
-  POS TCs derived from valid EC partitions use derivedFrom=EP.
+  POS TCs derived from valid partitions (EC-V-*) and NEG TCs derived from
+  invalid partitions (EC-I-*) both use derivedFrom=EP.
   ecRef is mandatory in A, B, and C.
 
 Boundary Value Analysis — when inputs have boundaries:
@@ -96,9 +97,9 @@ SECTION B — TEMPLATES
 SECTION C — COVERAGE MATRIX
   XML, JSON, or Markdown — state format at top.
   Root element carries humanReviewed=false as attribute.
-  Per requirement: TC list + coverageStatus:
+  Per requirement: TC list with id / type / confidence / ecRef + coverageStatus:
     COVERED / PARTIALLY_COVERED / NOT_COVERED / BLOCKED
-  coveragePercent = (COVERED + PARTIALLY_COVERED x 0.5) / total x 100
+  coveragePercent = (COVERED + PARTIALLY_COVERED x 0.5) / (total - BLOCKED) x 100
 
 SCALING — if 50+ TCs:
   Full Coverage Matrix first.
